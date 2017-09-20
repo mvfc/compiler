@@ -1,6 +1,6 @@
 			####D E L  >= <= +  -  " " . <- >  <  =  *  \  (  )  { } ; \. eof
 transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,12,8,99,16,99,15 ],
-			[1,4,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,2, 99],
+			[1,4,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,2],
 			[3,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
 			[3,4,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
 			[99,99,99,99,99,18,18,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
@@ -30,8 +30,8 @@ def verificaDigito(x):
 
 def consulta(x):
 	if(x[0] == 0 or x[0] == 1 or x[0] == 2 or x[0] == 3 or x[0] == 4 or x[0] == 5 or x[0] == 6 or x[0] == 7 or x[0] == 8 or x[0] == 9):
-		i = 1
-		j = 0
+		i = 1 #string[1]
+		j = 0 #armazenando estado
 		while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
 			j = transicao[j][0]
 			i = i + 1
@@ -41,8 +41,10 @@ def consulta(x):
 		if(x[i] == "\."):
 			j = transicao[j][21]
 			i = i + 1
+		
 		if(j == 1):
-			return 1
+			return 1 #token é um digito
+		
 		if(j == 2 and verificaDigito(x[i] == 1)):
 			while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
 				j = transicao[j][0]
@@ -53,7 +55,7 @@ def consulta(x):
 			else:
 				j = 99
 			if(j == 3):
-				return 1
+				return 1 #token é um numerico
 		if(j == 4):
 			if(x[i] == "+" | x[i] == "-"):
 				j = transicao[j][5]
@@ -65,3 +67,6 @@ def consulta(x):
 			while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
 				j = transicao[j][0]
 				i = i + 1
+				
+	if(x[0] == ">" or x[0] == "<" or x[0] == ">=" or x[0] == "<=" or x[0] == "=" or x[0] == "<>"):
+		
