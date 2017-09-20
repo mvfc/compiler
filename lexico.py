@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 			####D E L  >= <= +  -  " " . <- >  <  =  *  \  (  )  { } ; \. eof
 transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,99,8,99,16,99,15 ],
 	   		[1,4,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,2],
@@ -30,7 +32,7 @@ def verificaDigito(x):
 
 def consulta(x):
 	j = 0 #armazenando estado
-	i = 1 #string[1]
+	i = 0 #string[0]
 	if(x[0] == "0" or x[0] == "1" or x[0] == "2" or x[0] == "3" or x[0] == "4" or x[0] == "5" or x[0] == "6" or x[0] == "7" or x[0] == "8" or x[0] == "9"):		
 		while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) < i+1):
 			j = transicao[j][0]
@@ -125,11 +127,18 @@ def consulta(x):
 
 #id
 	if(x[0].isalpha() == True):
-		while(x[i].isalpha() != Fase and x[i].isdigit() != False and x[i] != "_" and len(x) < i):
-			i = i + 1
+		if(len(x) > 1):
+			while(x[i].isalpha() != False and x[i].isdigit() != False and x[i] != "_" and len(x) < i):
+				i = i + 1
 		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" or x[i] == None):
 			return 10
 			 
 a = raw_input("Foda-se: ")
 b = consulta(str(a))
 print(b)
+
+node = namedtuple("node", "Token Lexema Tipo")
+
+c = node("id", "a", "Identificador")
+
+print(c)
