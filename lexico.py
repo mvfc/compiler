@@ -71,3 +71,12 @@ def consulta(x):
 	if(x[0] == ">" and x[1] == "=")
 		j = transicao[j][3]
 		
+	if(x[0] == "<" and x[1] == "=")
+		j = transicao[j][4]
+	
+	if(x[0] == "<" and x[1] == ">")
+		j = transicao[j][4]
+	
+	if(x[0] == ">" or "<" or "=")
+		j = transicao[j][4]
+		
