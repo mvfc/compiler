@@ -93,6 +93,15 @@ def consulta(x):
 		      i = i + 1
 		      if(x[i] == "}")
 		      	j = transicao[j][19]
+		      
+ 	#(..)
+	if(x[0] == "(")
+		j = transicao[j][11]
+		while(x[i] != ")")
+		      i = i + 1
+		      if(x[i] == ")")
+		      	j = transicao[j][12]
+		      
 		  
 			 
 			 
