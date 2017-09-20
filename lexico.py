@@ -153,6 +153,6 @@ m = node("entao","entao", "rsv")
 n = node("literal","literal", "rsv")
 o = node("real","real", "rsv")
 
-def criaNode(token,lexema,tipo)
+def criaNode(token,lexema,tipo):
 	new = node(token,lexema,tipo)
 	return new
