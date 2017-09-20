@@ -70,6 +70,10 @@ def consulta(x):
 	if(x[0] == "<" and x[1] == "=")
 		j = transicao[j][4]
 	
+	#<-
+	if(x[0] ==  "<" and x[1] == "-"):
+		j = transicao [j][13]
+	
 	#<>
 	if(x[0] == "<" and x[1] == ">")
 		j = transicao[j][4]
@@ -101,7 +105,7 @@ def consulta(x):
 		      i = i + 1
 		      if(x[i] == ")")
 		      	j = transicao[j][12]
-		      
-		  
+		
+
 			 
 			 
