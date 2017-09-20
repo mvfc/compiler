@@ -27,5 +27,5 @@ def consulta(x):
 		i = transicao[0][1]
 		while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
 			i = transicao[0][1]
-		if(x[i] != 1 && x[i] != 2 && x[i] != 4 && x[i] != None):
+		if(i != 1 && i != 2 && i != 4 && x[i] != None):
 			return 1
