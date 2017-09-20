@@ -18,48 +18,52 @@ transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,12,8,99,16,99,15 
 			[99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
 			[99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
 			[15,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99]]
+print(transicao[0][2])
 
-#esse vetor armazena os estados finais para verificação do lexema
 final = [1, 3, 5, 17, 7, 9, 10, 11, 12, 13, 14, 15, 16]
 
-#caso de numero simples ex 123
 def verificaDigito(x):
-	if(x[0] == 0 || x[0] == 1 || x[0] == 2 || x[0] == 3 || x[0] == 4 || x[0] == 5 || x[0] == 6 || x[0] == 7 || x[0] == 8 || x[0] == 9):
+	if(x == 0 or x == 1 or x == 2 or x == 3 or x == 4 or x == 5 or x == 6 or x == 7 or x == 8 or x == 9):
 		return 1
-	
-#caso de numero com exponencial
+	else:
+		return 0
+
 def consulta(x):
-	if(x[0] == 0 || x[0] == 1 || x[0] == 2 || x[0] == 3 || x[0] == 4 || x[0] == 5 || x[0] == 6 || x[0] == 7 || x[0] == 8 || x[0] == 9):
+	if(x[0] == 0 or x[0] == 1 or x[0] == 2 or x[0] == 3 or x[0] == 4 or x[0] == 5 or x[0] == 6 or x[0] == 7 or x[0] == 8 or x[0] == 9):
 		i = 1
-		while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
+		j = 0
+		while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
 			j = transicao[j][0]
-			i++
+			i = i + 1
 		if(x[i] == "E"):
-			j = 4
-			i++
-		else if(x[i] == "\."):
-			j = 2
-			i++
-		else j = 99
+			j = transicao[j][1]
+			i = i + 1
+		if(x[i] == "\."):
+			j = transicao[j][21]
+			i = i + 1
+		else:
+			j = 99
 		if(j == 1):
 			return 1
-		if(j = 2 && verificaDigito(x[i] == 1)):
-			while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
+		if(j == 2 and verificaDigito(x[i] == 1)):
+			while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
 				j = transicao[j][0]
-				i++
+				i = i + 1
 			if(x[i] == "E"):
-				j = 4
-				i++
-			else j = 99
+				j = transicao[j][1]
+				i = i + 1
+			else:
+				j = 99
 			if(j == 3):
 				return 1
 		if(j == 4):
 			if(x[i] == "+" | x[i] == "-"):
-				j = 18
-				i++
-			else if(verificaDigito(x[i]) == 1):
-				j = 5
-			else j = 99
-			while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
+				j = transicao[j][5]
+				i = i + 1
+			if(verificaDigito(x[i]) == 1):
 				j = transicao[j][0]
-				i++
+			else:
+				j = 99
+			while(x[i] != 0 and x[i] != 1 and x[i] != 2 and x[i] != 3 and x[i] != 4 and x[i] != 5 and x[i] != 6 and x[i] != 7 and x[i] != 8 and x[i] != 9):
+				j = transicao[j][0]
+				i = i + 1
