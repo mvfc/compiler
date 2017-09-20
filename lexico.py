@@ -29,9 +29,9 @@ def verificaDigito(x):
 		return 0
 
 def consulta(x):
+	j = 0 #armazenando estado
+	i = 1 #string[1]
 	if(x[0] == "0" or x[0] == "1" or x[0] == "2" or x[0] == "3" or x[0] == "4" or x[0] == "5" or x[0] == "6" or x[0] == "7" or x[0] == "8" or x[0] == "9"):		
-		i = 1 #string[1]
-		j = 0 #armazenando estado
 		while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) < i+1):
 			j = transicao[j][0]
 			i = i + 1
@@ -79,7 +79,7 @@ def consulta(x):
 		return 2
 	
 	#> ou < ou = 
-	if(x[0] == ">" or "<" or "="):
+	if(x[0] == ">" or x[0] == "<" or x[0] == "="):
 		j = transicao[j][4]
 		return 2
 	
@@ -90,6 +90,7 @@ def consulta(x):
 		      i = i + 1 
 		      if(x[i] == "\""):
 			 	j = transicao[j][8]
+		return 4
 	
 	#{...}
 	if(x[0] == "{"):
@@ -98,22 +99,28 @@ def consulta(x):
 		      i = i + 1
 		      if(x[i] == "}"):
 		      	j = transicao[j][19]
+		return 5
 		      
  	#(..)
 	if(x[0] == "("):
 		j = transicao[j][11]
 		while(x[i] != ")"):
-		      i = i + 1
+		      i = i + 1	
 		      if(x[i] == ")"):
 		      	j = transicao[j][12]
-		      
-	#;
+		return 6
+#;
 	if(x[0] == ";"):
 		j = transicao[j][20]
+		return 7
 		
 	#operandos
-	if(x[0] == "+" x[0] == "-" or x[0] == "/" or x[0] == "*"):
+	if(x[0] == "+" or x[0] == "-" or x[0] == "/" or x[0] == "*"):
 		j = transicao[j][10]
+		return 8
+		      
 		  
 			 
-			 
+a = raw_input("Foda-se: ")
+b = consulta(str(a))
+print(b)
