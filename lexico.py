@@ -119,7 +119,15 @@ def consulta(x):
 		j = transicao[j][10]
 		return 8
 		      
-		  
+#<-
+	if(x[0] == "<" and x[1] == "-"):
+		return 9
+#id
+	if(x[0].isalpha() == True):
+		while(x[i].isalpha() != Fase and x[i].isdigit() != False and x[i] != "_" and len(x) < i):
+			i = i + 1
+		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" or x[i] == None):
+			return 10
 			 
 a = raw_input("Foda-se: ")
 b = consulta(str(a))
