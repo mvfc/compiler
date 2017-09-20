@@ -41,8 +41,6 @@ def consulta(x):
 		if(x[i] == "\."):
 			j = transicao[j][21]
 			i = i + 1
-		else:
-			j = 99
 		if(j == 1):
 			return 1
 		if(j == 2 and verificaDigito(x[i] == 1)):
