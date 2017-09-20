@@ -63,6 +63,9 @@ def consulta(x):
 			while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) < i+1):
 				j = transicao[j][0]
 				i = i + 1
+#<-
+	if(x[0] == "<" and x[1] == "-"):
+		return 9
 	#>=			
 	if(x[0] == ">" and x[1] == "="):
 		j = transicao[j][3]
@@ -119,9 +122,7 @@ def consulta(x):
 		j = transicao[j][10]
 		return 8
 		      
-#<-
-	if(x[0] == "<" and x[1] == "-"):
-		return 9
+
 #id
 	if(x[0].isalpha() == True):
 		while(x[i].isalpha() != Fase and x[i].isdigit() != False and x[i] != "_" and len(x) < i):
