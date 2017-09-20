@@ -147,12 +147,14 @@ g = node("leia", "leia", "rsv")
 h = node("se", "se", "rsv")
 i = node("entao","entao", "rsv")
 j = node("fimse","fimse", "rsv")
-h = node("fim","fim", "rsv")
+k = node("fim","fim", "rsv")
 l = node("Inteiro","Inteiro", "rsv")
 m = node("entao","entao", "rsv")
 n = node("literal","literal", "rsv")
 o = node("real","real", "rsv")
 
+tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
+
 def criaNode(token,lexema,tipo):
 	new = node(token,lexema,tipo)
-	return new
+	tabelaSimbolo.append(new)
