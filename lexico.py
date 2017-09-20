@@ -26,6 +26,7 @@ def consulta(x):
 	if(x[0] == 0 || x[0] == 1 || x[0] == 2 || x[0] == 3 || x[0] == 4 || x[0] == 5 || x[0] == 6 || x[0] == 7 || x[0] == 8 || x[0] == 9):
 		i = transicao[0][1]
 		while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
-			i = transicao[0][1]
-		if(i != 1 && i != 2 && i != 4 && x[i] != None):
+			j = transicao[0][1]
+			i++
+		if(j != 1 && j != 2 && j != 4 && x[i] != None):
 			return 1
