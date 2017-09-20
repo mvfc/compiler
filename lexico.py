@@ -69,5 +69,5 @@ def consulta(x):
 				i = i + 1
 				
 	if(x[0] == ">" and x[1] == "=")
-		j = [j][3]
+		j = transicao[j][3]
 		
