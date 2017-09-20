@@ -107,6 +107,13 @@ def consulta(x):
 		      if(x[i] == ")"):
 		      	j = transicao[j][12]
 		      
+	#;
+	if(x[0] == ";"):
+		j = transicao[j][20]
+		
+	#operandos
+	if(x[0] == "+" x[0] == "-" or x[0] == "/" or x[0] == "*"):
+		j = transicao[j][10]
 		  
 			 
 			 
