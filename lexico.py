@@ -22,11 +22,42 @@ print(transicao[0][2])
 
 final = [1, 3, 5, 17, 7, 9, 10, 11, 12, 13, 14, 15, 16]
 
+def verificaDigito(x):
+	if(x[0] == 0 || x[0] == 1 || x[0] == 2 || x[0] == 3 || x[0] == 4 || x[0] == 5 || x[0] == 6 || x[0] == 7 || x[0] == 8 || x[0] == 9):
+		return 1
+
 def consulta(x):
 	if(x[0] == 0 || x[0] == 1 || x[0] == 2 || x[0] == 3 || x[0] == 4 || x[0] == 5 || x[0] == 6 || x[0] == 7 || x[0] == 8 || x[0] == 9):
-		i = transicao[0][1]
+		i = 1
 		while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
-			j = transicao[0][1]
+			j = transicao[j][0]
 			i++
-		if(j != 1 && j != 2 && j != 4 && x[i] != None):
+		if(x[i] == "E"):
+			j = 4
+			i++
+		else if(x[i] == "\."):
+			j = 2
+			i++
+		else j = 99
+		if(j == 1):
 			return 1
+		if(j = 2 && verificaDigito(x[i] == 1)):
+			while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
+				j = transicao[j][0]
+				i++
+			if(x[i] == "E"):
+				j = 4
+				i++
+			else j = 99
+			if(j == 3):
+				return 1
+		if(j == 4):
+			if(x[i] == "+" | x[i] == "-"):
+				j = 18
+				i++
+			else if(verificaDigito(x[i]) == 1):
+				j = 5
+			else j = 99
+			while(x[i] != 0 && x[i] != 1 && x[i] != 2 && x[i] != 3 && x[i] != 4 && x[i] != 5 && x[i] != 6 && x[i] != 7 && x[i] != 8 && x[i] != 9):
+				j = transicao[j][0]
+				i++
