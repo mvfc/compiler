@@ -133,9 +133,6 @@ def consulta(x):
 		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" or x[i] == None):
 			return 10
 			 
-a = raw_input("Foda-se: ")
-b = consulta(str(a))
-print(b)
 
 node = namedtuple("node", "Token Lexema Tipo")
 
@@ -157,4 +154,15 @@ tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 
 def criaNode(token,lexema,tipo):
 	new = node(token,lexema,tipo)
-	tabelaSimbolo.append(new)
+	if(nodeExists(new) == 0):
+		tabelaSimbolo.append(new)
+
+def nodeExists(node):
+	i = 0
+	while(len(tabelaSimbolo) > i):
+		if(node == tabelaSimbolo[i]):
+			return 1
+		i = i + 1
+	return 0
+
+criaNode("inicioop", "inicio", "rsv")
