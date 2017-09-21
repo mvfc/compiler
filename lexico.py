@@ -23,21 +23,18 @@ transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,99,8,99,16,99,15 
 			[99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,12,99,99,99,99,99]]
 
 final = [1, 3, 5, 17, 7, 9, 10,12, 13, 14, 15, 16]
-posicao = 0
+global posicao
 
-def verificaDigito(x):
-	if(x == "0" or x == "1" or x == "2" or x == "3" or x == "4" or x == "5" or x == "6" or x == "7" or x == "8" or x == "9"):
-		return 1
-	else:
-		return 0
 
 def consulta(x):
+	global posicao
 	j = 0 #armazenando estado
 	i = 0 #string[0]
-	if(x[0] == "0" or x[0] == "1" or x[0] == "2" or x[0] == "3" or x[0] == "4" or x[0] == "5" or x[0] == "6" or x[0] == "7" or x[0] == "8" or x[0] == "9"):		
-		while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) > i):
-			j = transicao[j][0]
+	if(x[i].isdigit() == True):		
+		while(x[i].isdigit() == True or i < len(x)):
 			i = i + 1
+			j = transicao[j][0]
+			
 		if(x[i] == "E"):
 			j = transicao[j][1]
 			i = i + 1
@@ -49,8 +46,8 @@ def consulta(x):
 			posicao = i
 			return 1 #token e um digito
 		
-		if(j == 2 and verificaDigito(x[i] == 1)):
-			while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) > i):
+		if(j == 2 and x[i].isdigit == True):
+			while(x[i].isdigit() == True and len(x) > i):
 				j = transicao[j][0]
 				i = i + 1
 			if(x[i] == "E"):
@@ -63,9 +60,9 @@ def consulta(x):
 			if(x[i] == "+" | x[i] == "-"):
 				j = transicao[j][5]
 				i = i + 1
-			if(verificaDigito(x[i]) == 1):
+			if(x[i].isdigit() == True):
 				j = transicao[j][0]
-			while(x[i] != "0" and x[i] != "1" and x[i] != "2" and x[i] != "3" and x[i] != "4" and x[i] != "5" and x[i] != "6" and x[i] != "7" and x[i] != "8" and x[i] != "9" and len(x) > i):
+			while(x[i].isdigit() == True and len(x) > i):
 				j = transicao[j][0]
 				i = i + 1
 #<-
@@ -142,9 +139,7 @@ def consulta(x):
 	if(x[0].isalpha() == True):
 		if(len(x) > 1):
 			while(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" and i < len(x)):
-				print(len(x))
 				i = i + 1
-				print i
 		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_"):
 			posicao = i
 			return 10
@@ -187,10 +182,11 @@ def nodeExists(node):
 	return 0
 
 arquivo = open("texto.alg")
-linha = arquivo.readline()
+linha = "4894948"
 nrlinha = 1
 
 while(linha != ""):
+	global posicao
 	posicao = 0
 	consulta(linha)
 	posicao = posicao + 1
