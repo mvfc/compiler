@@ -23,6 +23,7 @@ transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,99,8,99,16,99,15 
 			[99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,12,99,99,99,99,99]]
 
 final = [1, 3, 5, 17, 7, 9, 10,12, 13, 14, 15, 16]
+posicao = 0
 
 def verificaDigito(x):
 	if(x == "0" or x == "1" or x == "2" or x == "3" or x == "4" or x == "5" or x == "6" or x == "7" or x == "8" or x == "9"):
@@ -45,6 +46,7 @@ def consulta(x):
 			i = i + 1
 		
 		if(j == 1):
+			posicao = i
 			return 1 #token e um digito
 		
 		if(j == 2 and verificaDigito(x[i] == 1)):
@@ -55,6 +57,7 @@ def consulta(x):
 				j = transicao[j][1]
 				i = i + 1
 			if(j == 3):
+				posicao = i
 				return 1 #token e um numerico
 		if(j == 4):
 			if(x[i] == "+" | x[i] == "-"):
@@ -67,24 +70,29 @@ def consulta(x):
 				i = i + 1
 #<-
 	if(x[0] == "<" and x[1] == "-"):
+		posicao = 1
 		return 9
 	#>=			
 	if(x[0] == ">" and x[1] == "="):
+		posicao = 1
 		j = transicao[j][3]
 		return 2
 	
 	#<=
 	if(x[0] == "<" and x[1] == "="):
+		posicao = 1
 		j = transicao[j][4]
 		return 2
 	
 	#<>
 	if(x[0] == "<" and x[1] == ">"):
+		posicao = 1
 		j = transicao[j][4]
 		return 2
 	
 	#> ou < ou = 
 	if(x[0] == ">" or x[0] == "<" or x[0] == "="):
+		posicao = 0
 		j = transicao[j][4]
 		return 2
 	
@@ -95,6 +103,7 @@ def consulta(x):
 		      i = i + 1 
 		      if(x[i] == "\""):
 			 	j = transicao[j][8]
+		posicao = i
 		return 4
 	
 	#{...}
@@ -104,6 +113,7 @@ def consulta(x):
 		      i = i + 1
 		      if(x[i] == "}"):
 		      	j = transicao[j][19]
+		posicao = i
 		return 5
 		      
  	#(..)
@@ -113,25 +123,36 @@ def consulta(x):
 		      i = i + 1	
 		      if(x[i] == ")"):
 		      	j = transicao[j][12]
+		posicao = i
 		return 6
 #;
 	if(x[0] == ";"):
 		j = transicao[j][20]
+		posicao = i
 		return 7
 		
 	#operandos
 	if(x[0] == "+" or x[0] == "-" or x[0] == "/" or x[0] == "*"):
 		j = transicao[j][10]
+		posicao = 0
 		return 8
 		      
 
 #id
 	if(x[0].isalpha() == True):
 		if(len(x) > 1):
-			while(x[i].isalpha() != False and x[i].isdigit() != False and x[i] != "_" and len(x) > i):
+			while(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" and i < len(x)):
+				print(len(x))
 				i = i + 1
-		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" or x[i] == None):
+				print i
+		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_"):
+			posicao = i
 			return 10
+#eof
+	if(x[0] == ""):
+		posicao = 0
+		return 11
+
 			 
 
 node = namedtuple("node", "Token Lexema Tipo")
@@ -165,4 +186,14 @@ def nodeExists(node):
 		i = i + 1
 	return 0
 
-criaNode("inicioop", "inicio", "rsv")
+arquivo = open("texto.alg")
+linha = arquivo.readline()
+nrlinha = 1
+
+while(linha != ""):
+	posicao = 0
+	consulta(linha)
+	posicao = posicao + 1
+	linha = linha[posicao:]
+	print posicao
+	print linha
