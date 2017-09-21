@@ -22,7 +22,6 @@ transicao = [[1,99,14,17,17,10,10,6,99,99,13,17,17,17,10,10,11,99,8,99,16,99,15 
 			[15,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99],
 			[99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,12,99,99,99,99,99]]
 
-final = [1, 3, 5, 17, 7, 9, 10,12, 13, 14, 15, 16]
 global posicao
 
 
@@ -31,7 +30,7 @@ def consulta(x):
 	j = 0 #armazenando estado
 	i = 0 #string[0]
 	if(x[i].isdigit() == True):		
-		while(x[i].isdigit() == True or i < len(x)):
+		while(i+1 < len(x) and x[i].isdigit() == True):
 			i = i + 1
 			j = transicao[j][0]
 			
@@ -47,7 +46,7 @@ def consulta(x):
 			return 1 #token e um digito
 		
 		if(j == 2 and x[i].isdigit == True):
-			while(x[i].isdigit() == True and len(x) > i):
+			while(i+1 < len(x) and x[i].isdigit() == True):
 				j = transicao[j][0]
 				i = i + 1
 			if(x[i] == "E"):
@@ -62,7 +61,7 @@ def consulta(x):
 				i = i + 1
 			if(x[i].isdigit() == True):
 				j = transicao[j][0]
-			while(x[i].isdigit() == True and len(x) > i):
+			while(i+1 < len(x) and x[i].isdigit() == True):
 				j = transicao[j][0]
 				i = i + 1
 #<-
@@ -138,7 +137,7 @@ def consulta(x):
 #id
 	if(x[0].isalpha() == True):
 		if(len(x) > 1):
-			while(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_" and i < len(x)):
+			while(i+1 < len(x) and x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_"):
 				i = i + 1
 		if(x[i].isalpha() == True or x[i].isdigit() == True or x[i] == "_"):
 			posicao = i
@@ -182,14 +181,16 @@ def nodeExists(node):
 	return 0
 
 arquivo = open("texto.alg")
-linha = "4894948"
+linha = arquivo.readline()
 nrlinha = 1
 
 while(linha != ""):
 	global posicao
 	posicao = 0
+	print linha
 	consulta(linha)
 	posicao = posicao + 1
 	linha = linha[posicao:]
 	print posicao
-	print linha
+
+arquivo.close()
