@@ -107,6 +107,8 @@ def __main__():
     while(linha != ""):
         lexico(linha)
         linha = arquivo.readline()
+    if(linha == ""):
+        criaNode("Fim de Arquivo", "", "EOF")
     MostrarTabela()
 
 __main__()
