@@ -94,7 +94,10 @@ def nodeExists(node):
     return 0
 
 def MostrarTabela():
-    print(tabelaSimbolo)
+    indexval = 0
+    for i in range(len(tabelaSimbolo)):
+        print(tabelaSimbolo[indexval])
+        indexval += 1
 
 def __main__():
     """str(sys.argv)
