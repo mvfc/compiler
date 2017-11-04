@@ -56,24 +56,24 @@ def lexico(linha):
             lexico(linha[1:])
 
     if(linha[0] == "<" and linha[1] == "-"):
-        criaNode("Atribuicao", linha[:1], "RCB")
-        if (linha[1:] != ""):
-            lexico(linha[1:])
+        criaNode("Atribuicao", linha[:2], "RCB")
+        if (linha[2:] != ""):
+            lexico(linha[2:])
 
     if(linha[0] == "<" and linha[1] == "="):
-        criaNode("Operador relacional", linha[:1], "OPR")
-        if (linha[1:] != ""):
-            lexico(linha[1:])
+        criaNode("Operador relacional", linha[:2], "OPR")
+        if (linha[2:] != ""):
+            lexico(linha[2:])
 
     if(linha[0] == ">" and linha[1] == "="):
-        criaNode("Operador relacional", linha[:1], "OPR")
-        if (linha[1:] != ""):
-            lexico(linha[1:])
+        criaNode("Operador relacional", linha[:2], "OPR")
+        if (linha[2:] != ""):
+            lexico(linha[2:])
 
     if(linha[0] == "<" and linha[1] == ">"):
-        criaNode("Operador relacional", linha[:1], "OPR")
-        if (linha[1:] != ""):
-            lexico(linha[1:])
+        criaNode("Operador relacional", linha[:2], "OPR")
+        if (linha[2:] != ""):
+            lexico(linha[2:])
 
     if(linha[0] == "<" or linha[0] == ">" or linha[0] == "="):
         criaNode("Operador relacional", linha[:1], "OPR")
@@ -82,13 +82,14 @@ def lexico(linha):
 
 def criaNode(token, lexema, tipo):
     new = node(token, lexema, tipo)
-    if (nodeExists(new) == 0):
+    newrsv = node(lexema, lexema, "rsv")
+    if (nodeExists(new, newrsv) == 0):
         tabelaSimbolo.append(new)
 
-def nodeExists(node):
+def nodeExists(node, nodersv):
     i = 0
     while (len(tabelaSimbolo) > i):
-        if (node == tabelaSimbolo[i]):
+        if (node == tabelaSimbolo[i] or nodersv == tabelaSimbolo[i]):
             return 1
         i = i + 1
     return 0
