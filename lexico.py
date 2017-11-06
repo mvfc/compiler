@@ -19,8 +19,6 @@ o = node("real", "real", "rsv")
 
 tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 
-arquivo = open("texto.alg")
-
 def lexico(linha):
     i = 0
     if(linha[0].isalpha() == True):
