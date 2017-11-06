@@ -95,15 +95,19 @@ def nodeExists(node, nodersv):
     return 0
 
 def MostrarTabela():
+    open("output.txt", "w").close()
+    saida = open("output.txt", "w")
     indexval = 0
     for i in range(len(tabelaSimbolo)):
         print(tabelaSimbolo[indexval])
+        saida.write(str(tabelaSimbolo[indexval]))
+        saida.write("\n")
         indexval += 1
 
 def __main__():
     """str(sys.argv)
     arquivo = open(argv[1])"""
-    arquivo = open("texto.alg")
+    arquivo = open("texto.alg", "r")
     linha = arquivo.readline()
     while(linha != ""):
         lexico(linha)
