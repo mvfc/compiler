@@ -63,7 +63,44 @@ tabela_slr = """0"""[   2,       99,      99,     99,   99,  99,  99,     99,   
 
   
 
-
+""" Relacionar colunas com nome:
+ 0 = "inicio"
+ 1 = "varinicio"
+ 2 = "varfim"
+ 3 = "id"
+ 3 = ";"
+ 5 = "int"
+ 6 = "real"
+ 7 = "leia"
+ 8 = "escreva"
+ 9 = "literal"
+ 10 = "num"
+ 11 = "rcb"
+ 12 = "opm"
+ 13 = "se"
+ 14 = "("
+ 15 = ")"
+ 16 = "entao"
+ 17 = "opr"
+ 18 = "fimse"
+ 19 = "fim"
+ 20 = "$"
+ 21 = "P"
+ 22 = "V"
+ 23 = "LV"
+ 24 = "D"
+ 25 = "TIPO"
+ 26 = "A"
+ 27 = "ES"
+ 28 = "ARG"
+ 29 = "CMD"
+ 30 = "LD"
+ 40 = "OPRD"
+ 41 = "COND"
+ 42 = "CABECALHO"
+ 43 = "EXP_R"
+ 44 = "CORPO
+ 
 ######## algoritmo parcialmente implementado
 stack = [0]
 i = 0
