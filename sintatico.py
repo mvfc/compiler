@@ -127,6 +127,7 @@ while(1):
     else:
         raise Exception("Erro!")
 
+        # adicionar (+1) para achar o índice certo
 gramatica = ["P'->1", "P->3", "V->2", "LV->2", "D->3", "TIPO->1", "TIPO->1", "TIPO->1", "A->2", "ES->3", "ES->3", "ARG->1", "ARG->1", "ARG->1", "A->2", "CMD->4", "LD->3", "LD->1", "OPRD->1", "OPRD->1", "A->2", "COND->2", "CABECALHO->5", "EXP_R->3", "CORPO->2", "CORPO->2", "CORPO->2", "CORPO->1", "A->1"]
 
 
