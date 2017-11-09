@@ -111,24 +111,39 @@ while(true)
 
  
 ######## algoritmo parcialmente implementado
-stack = [0]
-i = 0
+s = stack[len(stack)]
 
-while(1):
-    ip = entrada[i] 
-    if(tabela_slr[s][a].isdigit() == True and tabela_slr[s,a] != 99):
-        stack.append(entrada[i])
-        stack.append(tabela_slr[s][a])
-    elif(tabela_slr[s][a].isdigit() != True):
-        for p in range(2*len(dirprod)): #dirprod = parte direita da producao
-            stack.pop() #da pop nas 2 * tamanho de Beta entradas da pilha
-        stack.append(stack[len(stack)]) #append no número do estado
-        stack.append(tabela_slr[stack[len(stack)]][esqprod]) #esqprod = parte esquerda da producao
-        print(prod) #printa a producao na tela
-    elif(tabela_slr[s][a] == 00):
-        return 0
-    else:
-        raise Exception("Erro!")
+lexema = arquivo.readline
+
+def separa_token(lexema):
+    aux = lexema.split(",")
+    aux = aux[1].replace(")", "")
+    aux = aux.replace("Token='", "")
+    aux = aux.replace("'", "")
+    aux = aux.replace(" ","")
+    return aux
+
+def busca_lexico(lexema):
+    arquivo = open("output.txt", "r")
+    linha = 0
+    aux = "Lexema='"+lexema+"'"
+    while(True):
+        linha = arquivo.readline()
+        if(aux in linha):
+            return linha
+        elif(linha == ""):
+            break
+
+
+while(True):
+    a = busca_lexico(lexema)
+    a = separa_token(a)
+    try:
+        indice = coluna.index(a)
+    except:
+        indice = -1
+    lexema = lexema + 1
+    
 
         # adicionar (+1) para achar o índice certo
 
