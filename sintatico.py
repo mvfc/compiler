@@ -71,44 +71,9 @@ tabela_slr = """0"""[   2,       99,      99,     99,   99,  99,  99,     99,   
 
 
 
+gramatica = ["P'->1", "P->3", "V->2", "LV->2","LV->2", "D->3", "TIPO->1", "TIPO->1", "TIPO->1", "A->2", "ES->3", "ES->3", "ARG->1", "ARG->1", "ARG->1", "A->2", "CMD->4", "LD->3", "LD->1", "OPRD->1", "OPRD->1", "A->2", "COND->2", "CABECALHO->5", "EXP_R->3", "CORPO->2", "CORPO->2", "CORPO->2", "CORPO->1", "A->1"]
 coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "Inteiro", "real", "leia", "escreva", "literal", "num", "rcb", "opm", "se", "ab_p", "fc_p", "entao", "opr","fimse", "fim", "$", "P", "V", "LV", "D", "TIPO", "A", "ES", "ARG", "CMD", "LD", "OPRD", "COND","CABECALHO","EXP_R", "CORPO"]
-# 0 = "inicio"
-# 1 = "varinicio"
-# 2 = "varfim"
-# 3 = "id"
-# 3 = ";"
-# 5 = "int"
-# 6 = "real"
-# 7 = "leia"
-# 8 = "escreva"
-# 9 = "literal"
-# 10 = "num"
-# 11 = "rcb"
-# 12 = "opm"
-# 13 = "se"
-# 14 = "("
-# 15 = ")"
-# 16 = "entao"
-# 17 = "opr"
-# 18 = "fimse"
-# 19 = "fim"
-# 20 = "$"
-# 21 = "P"
-# 22 = "V"
-# 23 = "LV"
-# 24 = "D"
-# 25 = "TIPO"
-# 26 = "A"
-# 27 = "ES"
-# 28 = "ARG"
-# 29 = "CMD"
-# 30 = "LD"
-# 40 = "OPRD"
-# 41 = "COND"
-# 42 = "CABECALHO"
-# 43 = "EXP_R"
-# 44 = "CORPO"
-
+producoes = 
 
 Algoritmo SLR
 s = estado no topo da pilha
@@ -165,7 +130,6 @@ while(1):
         raise Exception("Erro!")
 
         # adicionar (+1) para achar o índice certo
-gramatica = ["P'->1", "P->3", "V->2", "LV->2","LV->2", "D->3", "TIPO->1", "TIPO->1", "TIPO->1", "A->2", "ES->3", "ES->3", "ARG->1", "ARG->1", "ARG->1", "A->2", "CMD->4", "LD->3", "LD->1", "OPRD->1", "OPRD->1", "A->2", "COND->2", "CABECALHO->5", "EXP_R->3", "CORPO->2", "CORPO->2", "CORPO->2", "CORPO->1", "A->1"]
 
 
 
