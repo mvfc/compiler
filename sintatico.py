@@ -126,7 +126,7 @@ while(true)
   auxiliar = [s][a] 
   # Caso 1: shift 
   se auxiliar == número && != 99
-        empilha a
+        empilha coluna[a] # vai empilhar o token, no caso "inicio"
         empilha auxiliar
 
   Senão, se auxiliar != número
@@ -137,7 +137,7 @@ while(true)
 
         desempilha( 2 * split_dir)
         empilha(split_esq)
-        imprime produção correspondente ao numero seguido do "r", que vai ta num txt tbm
+        imprime produção correspondente ao numero seguido do "r", que vai estar no vetor producoes
         s = [topo_pilha] [topo_pilha-1]
         
  Fim While
