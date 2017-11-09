@@ -127,7 +127,7 @@ while(1):
     else:
         raise Exception("Erro!")
 
-gramatica = ["P'->P", "P->inicio V A", "V->varinicio LV", "LV->D LV", "D->id TIPO", "TIPO->inteiro", "TIPO->real", "TIPO->literal", "A->ES A", "ES->leia id", "ES->escreva ARG", "ARG->literal", "ARG->num", "ARG->id", "A->CMD A", "CMD->id rcb LD", "LD->OPRD opm OPRD", "LD->OPRD", "OPRD->id", "OPRD->num", "A->COND A", "COND->CABECALHO CORPO", "CABECALHO->se (EXP_R) entao", "EXP_R->OPRD opr OPRD", "CORPO->ES CORPO", "CORPO->CMD CORPO", "CORPO->COND CORPO", "CORPO->fimse", "A->fim"]
+gramatica = ["P'->1", "P->3", "V->2", "LV->2", "D->3", "TIPO->1", "TIPO->1", "TIPO->1", "A->2", "ES->3", "ES->3", "ARG->1", "ARG->1", "ARG->1", "A->2", "CMD->4", "LD->3", "LD->1", "OPRD->1", "OPRD->1", "A->2", "COND->2", "CABECALHO->5", "EXP_R->3", "CORPO->2", "CORPO->2", "CORPO->2", "CORPO->1", "A->1"]
 
 
-### gramatica = [ "P'", 1, "P", 3, "PV, 2]
+
