@@ -149,10 +149,7 @@ while(True):
         stack.append(coluna[indice])
         stack.append(auxiliar)
     else:
-        try:
-            aux2 = gramatica[separa_reducao(auxiliar)-1]
-        except:
-            aux2 = -1
+        aux2 = gramatica[separa_reducao(auxiliar)-1]
         aux2 = aux2.split("->")
         split_esq = aux2[0]
         split_dir = aux2[1]
