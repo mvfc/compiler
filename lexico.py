@@ -1,86 +1,88 @@
 from collections import namedtuple
 import sys
 
-node = namedtuple("node", "Token Lexema Tipo")
+node = namedtuple("node", "Lexema Token")
 
-c = node("inicio", "inicio", "rsv")
-d = node("varinicio", "varinicio", "rsv")
-e = node("varfim", "varfim", "rsv")
-f = node("escreva", "escreva", "rsv")
-g = node("leia", "leia", "rsv")
-h = node("se", "se", "rsv")
-i = node("entao", "entao", "rsv")
-j = node("fimse", "fimse", "rsv")
-k = node("fim", "fim", "rsv")
-l = node("Inteiro", "Inteiro", "rsv")
-m = node("entao", "entao", "rsv")
-n = node("literal", "literal", "rsv")
-o = node("real", "real", "rsv")
+c = node("inicio", "inicio")
+d = node("varinicio", "varinicio")
+e = node("varfim", "varfim")
+f = node("escreva", "escreva")
+g = node("leia", "leia")
+h = node("se", "se")
+i = node("entao", "entao")
+j = node("fimse", "fimse")
+k = node("fim", "fim")
+l = node("Inteiro", "Inteiro")
+m = node("entao", "entao")
+n = node("literal", "literal")
+o = node("real", "real")
 
 tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
+
+arquivo = open("texto.alg")
 
 def lexico(linha):
     i = 0
     if(linha[0].isalpha() == True):
         while(len(linha) < i or linha[i].isalpha() == True or linha[i].isdigit() == True or linha[i] == "_"):
             i = i + 1
-        criaNode("Identificador", linha[:i], "id")
+        criaNode(linha[:i], "id")
         if(linha[i:] != ""):
             lexico(linha[i:])
     if(linha[0].isdigit() == True):
         while(len(linha) < i or linha[i].isdigit() == True or linha[i] == "E" or linha[i] == "."):
             i = i + 1
-        criaNode("Constante numerica", linha[:i], "Num")
+        criaNode(linha[:i], "num")
         if (linha[i:] != ""):
             lexico(linha[i:])
     if(linha[0] == "("):
-        criaNode("Abre parenteses", linha[:1], "AB_P")
+        criaNode(linha[:1], "ab_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     if(linha[0] == ")"):
-        criaNode("Fecha parenteses", linha[:1], "FC_P")
+        criaNode(linha[:1], "fc_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     if(linha[0] == "+" or linha[0] == "-" or linha[0] == "/" or linha[0] == "*"):
-        criaNode("Operador aritmetico", linha[:1], "OPM")
+        criaNode(linha[:1], "opm")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     if(linha[0] == ";"):
-        criaNode("Ponto e virgula", linha[:1], "PT_V")
+        criaNode(linha[:1], "pt_v")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     if(linha[0] == "<" and linha[1] == "-"):
-        criaNode("Atribuicao", linha[:2], "RCB")
+        criaNode(linha[:2], "rcb")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     if(linha[0] == "<" and linha[1] == "="):
-        criaNode("Operador relacional", linha[:2], "OPR")
+        criaNode(linha[:2], "opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     if(linha[0] == ">" and linha[1] == "="):
-        criaNode("Operador relacional", linha[:2], "OPR")
+        criaNode(linha[:2], "opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     if(linha[0] == "<" and linha[1] == ">"):
-        criaNode("Operador relacional", linha[:2], "OPR")
+        criaNode(linha[:2], "opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     if(linha[0] == "<" or linha[0] == ">" or linha[0] == "="):
-        criaNode("Operador relacional", linha[:1], "OPR")
+        criaNode(linha[:1], "opr")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
-def criaNode(token, lexema, tipo):
-    new = node(token, lexema, tipo)
-    newrsv = node(lexema, lexema, "rsv")
+def criaNode(lexema, token):
+    new = node(lexema, token)
+    newrsv = node(lexema, lexema)
     if (nodeExists(new, newrsv) == 0):
         tabelaSimbolo.append(new)
 
@@ -98,7 +100,7 @@ def MostrarTabela():
     indexval = 0
     for i in range(len(tabelaSimbolo)):
         print(tabelaSimbolo[indexval])
-        saida.write(str(tabelaSimbolo[indexval]))
+        saida.write(str(tabelaSimbolo[indexval]).replace("node",""))
         saida.write("\n")
         indexval += 1
 
@@ -111,7 +113,7 @@ def __main__():
         lexico(linha)
         linha = arquivo.readline()
     if(linha == ""):
-        criaNode("Fim de Arquivo", "", "EOF")
+        criaNode("", "EOF")
     MostrarTabela()
 
 __main__()
