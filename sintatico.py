@@ -143,7 +143,25 @@ while(True):
     except:
         indice = -1
     lexema = lexema + 1
-    
+    auxiliar = tabela_slr[s][indice]
+    if(auxiliar.isdigit() == True and auxiliar != 99):
+        stack.append(coluna[indice])
+        stack.append(auxiliar)
+    else:
+        try:
+            aux2 = gramatica[separa_reducao(auxiliar)-1]
+        except:
+            aux2 = -1
+        aux2 = aux2.split("->")
+        split_esq = aux2[0]
+        split_dir = aux2[1]
+        aux3 = 0
+        while(aux3 != split_dir):
+            stack.pop()
+            aux3 += 1
+        stack.append(split_esq)
+        print(producao[separa_reducao(auxiliar)-1])
+        s = tabela_slr[stack[len(stack)]][stack[len(stack)-1]]
 
         # adicionar (+1) para achar o índice certo
 
