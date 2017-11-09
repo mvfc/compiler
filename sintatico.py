@@ -109,17 +109,50 @@ coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "Inteiro", "real", "le
 # 43 = "EXP_R"
 # 44 = "CORPO"
 
+
+Algoritmo SLR
+s = estado no topo da pilha
+
+lexema = 0;
+while(true)
+
+  a = lexema #                     vamos supor que recebeu "inicio"
+  Procurar "a" no TXT do T1 #     encontrou lá (lexema = "inicio", token = "inicio")
+  a = split pra pegar só o token # a = "inicio" 
+  procurar "a" no vetor coluna[] # procurou, encontrou "início" na posição coluna[0]
+  a = 0
+  lexema = lexema + 1
+
+  auxiliar = [s][a] 
+  # Caso 1: shift 
+  se auxiliar == número && != 99
+        empilha a
+        empilha auxiliar
+
+  Senão, se auxiliar != número
+  # Caso 2: reduce, nesse caso auxiliar vai ter um "r" seguido de número
+        aux2 = procura no vetor gramatica[] a posição do número seguido do "r" - 1
+        split_esq = parte antes de "->", uma letra, ex: LD
+        split_dir = parte depois do "->", um número ex: 3
+
+        desempilha( 2 * split_dir)
+        empilha(split_esq)
+        imprime produção correspondente ao numero seguido do "r", que vai ta num txt tbm
+        s = [topo_pilha] [topo_pilha-1]
+        
+ Fim While
+        
+
  
 ######## algoritmo parcialmente implementado
 stack = [0]
 i = 0
 
 while(1):
-    ip = entrada[i]
+    ip = entrada[i] 
     if(tabela_slr[s][a].isdigit() == True and tabela_slr[s,a] != 99):
         stack.append(entrada[i])
         stack.append(tabela_slr[s][a])
-        i += 1
     elif(tabela_slr[s][a].isdigit() != True):
         for p in range(2*len(dirprod)): #dirprod = parte direita da producao
             stack.pop() #da pop nas 2 * tamanho de Beta entradas da pilha
