@@ -69,6 +69,12 @@ tabela_slr = """0"""[   2,       99,      99,     99,   99,  99,  99,     99,   
 #Exemplo: tabela_slr[3].[inicio], procura no vetor qual o número de "inicio", e retorna, daí ficaria:
 # tabela_slr[3].[0], sendo "0" o número da coluna do inicio pra fazer a busca na tabela. 
 
+
+
+coluna = [ "inicio", "varinicio", "varfim", "Identificador", "Ponto e virgula", "Inteiro", "real", "leia", "escreva", "literal", "Constante numerica", "Atribuicao", 
+          "Operador aritmetico", "se", "Abre parenteses", "Fecha parenteses", "entao", "Operador relacional",
+          "fimse", "fim", "$", "P", "V", "LV", "D", "TIPO", "A", "ES", "ARG", "CMD", "LD", "OPRD", "COND","CABECALHO",
+          "EXP_R", "CORPO"]
 # 0 = "inicio"
 # 1 = "varinicio"
 # 2 = "varfim"
