@@ -152,7 +152,7 @@ while(True):
         aux2 = gramatica[separa_reducao(auxiliar)-1]
         aux2 = aux2.split("->")
         split_esq = aux2[0]
-        split_dir = aux2[1]
+        split_dir = int(aux2[1]) * 2
         aux3 = 0
         while(aux3 != split_dir):
             stack.pop()
