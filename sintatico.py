@@ -133,7 +133,8 @@ def busca_lexico(lexema):
             return linha
         elif(linha == ""):
             break
-
+def separa_reducao(reducao):
+    return reducao.replace("r", "")
 
 while(True):
     a = busca_lexico(lexema)
