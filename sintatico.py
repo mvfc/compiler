@@ -76,7 +76,7 @@ coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "Inteiro", "real", "le
 producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varfim ;", "D-> id TIPO ;", "TIPO-> int", "TIPO->real", "TIPO-> literal", "A->ES A", "ES-> leia id ;", "ES-> escreva ARG ;", "ARG-> literal", "ARG-> num", "ARG->id", "A-> CMD A", "CMD-> id rcb LD ;", "LD-> OPRD opm OPRD", "LD-> OPRD", "OPRD-> id", "OPRD-> num", "A-> COND A", "COND-> CABECALHO CORPO", "CABECALHO-> se ( EXP_R ) entao", "EXP_R->OPRD opr OPRD", "CORPO-> ES CORPO", "CORPO-> CMD CORPO", "CORPO-> COND CORPO", "CORPO->fimse", "A->fim"]
 
 
-Algoritmo SLR
+"""Algoritmo SLR
 s = estado no topo da pilha
 
 lexema = 0;
@@ -106,7 +106,7 @@ while(true)
         imprime produção correspondente ao numero seguido do "r", que vai estar no vetor producoes
         s = [topo_pilha] [topo_pilha-1]
         
- Fim While
+ Fim While """
         
 
  
@@ -152,7 +152,7 @@ while(True):
         aux2 = gramatica[separa_reducao(auxiliar)-1]
         aux2 = aux2.split("->")
         split_esq = aux2[0]
-        split_dir = int(aux2[1]) * 2
+        split_dir = aux2[1]
         aux3 = 0
         while(aux3 != split_dir):
             stack.pop()
