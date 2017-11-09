@@ -119,6 +119,7 @@ while(1):
     if(tabela_slr[s][a].isdigit() == True and tabela_slr[s,a] != 99):
         stack.append(entrada[i])
         stack.append(tabela_slr[s][a])
+        i += 1
     elif(tabela_slr[s][a].isdigit() != True):
         for p in range(2*len(dirprod)): #dirprod = parte direita da producao
             stack.pop() #da pop nas 2 * tamanho de Beta entradas da pilha
