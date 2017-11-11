@@ -65,7 +65,6 @@ producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varf
 stack = [0]
 
 def separa_token(lexema):
-    print(lexema)
     aux = lexema.split(",")
     aux2 = aux[1].replace(")", "")
     aux2 = aux2.replace("Token='", "")
@@ -92,16 +91,14 @@ def separa_reducao(reducao):
 def __main__():
     fonte = open("texto.alg", "r")
     lexema = str(fonte.readline())
-    s = stack[len(stack) - 1]
+    s = 0
     while(True):
         if(lexema == ""):
             break
         a = busca_lexico(lexema)
         b = separa_token(a)
-        try:
-            indice = coluna.index(b)
-        except:
-            indice = -1
+        b = b.replace("\n", "")
+        indice = coluna.index(b)
         lexema = fonte.readline()
         auxiliar = str(tabela_slr[s][indice])
         if(auxiliar.isdigit() == True and auxiliar != 99):
