@@ -76,14 +76,12 @@ def separa_token(lexema):
 def busca_lexico(lexema):
     arquivo = open("output.txt", "r")
     linha = 0
-    aux = "Lexema='"+lexema+"'"
-    print(aux)
+    aux = "(Lexema='"+lexema
     while(True):
         linha = arquivo.readline()
-        if(aux in linha):
-            print(linha)
+        if(linha.find(aux)):
             arquivo.close()
-            return linha
+            return str(linha)
         elif(linha == ""):
             arquivo.close()
             break
