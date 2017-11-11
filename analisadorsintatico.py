@@ -65,6 +65,7 @@ producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varf
 stack = [0]
 
 def separa_token(lexema):
+    print(lexema)
     aux = lexema.split(",")
     aux2 = aux[1].replace(")", "")
     aux2 = aux2.replace("Token='", "")
@@ -75,13 +76,16 @@ def separa_token(lexema):
 def busca_lexico(lexema):
     arquivo = open("output.txt", "r")
     linha = 0
-    """aux = "Lexema='"+lexema+"'" """
-    aux = "Lexema='inicio'"
+    aux = "Lexema='"+lexema+"'"
+    print(aux)
     while(True):
         linha = arquivo.readline()
         if(aux in linha):
-            return str(linha)
+            print(linha)
+            arquivo.close()
+            return linha
         elif(linha == ""):
+            arquivo.close()
             break
 
 def separa_reducao(reducao):
@@ -92,11 +96,12 @@ def __main__():
     lexema = str(fonte.readline())
     s = stack[len(stack) - 1]
     while(True):
-        print(lexema)
+        if(lexema == ""):
+            break
         a = busca_lexico(lexema)
-        a = separa_token(a)
+        b = separa_token(a)
         try:
-            indice = coluna.index(a)
+            indice = coluna.index(b)
         except:
             indice = -1
         lexema = fonte.readline()
@@ -116,5 +121,6 @@ def __main__():
             stack.append(split_esq)
             print(producao[separa_reducao(auxiliar)-1])
             s = tabela_slr[stack[len(stack) - 1]][stack[len(stack)-2]]
+
 
 __main__()
