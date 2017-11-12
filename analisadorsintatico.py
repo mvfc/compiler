@@ -79,16 +79,15 @@ def __main__():
         a = 0
         a = lexico.__main__(lexema)
         i = 0
-        print(len(a))
-        while(i < len(a)-1):
-            print(a[i])
+        while(i < len(a)):
             indice = coluna.index(a[i])
-            print(indice)
             auxiliar = str(tabela_slr[s][indice])
-            print(auxiliar)
             if(auxiliar.isdigit() == True and auxiliar != 99):
                 stack.append(coluna[indice])
                 stack.append(auxiliar)
+                print(stack)
+                s = int(stack[len(stack) - 1])
+
             else:
                 aux2 = gramatica[separa_reducao(auxiliar)-1]
                 aux2 = aux2.split("->")
@@ -99,7 +98,7 @@ def __main__():
                     stack.pop()
                     aux3 += 1
                 stack.append(split_esq)
-                print(producoes[separa_reducao(auxiliar)-1])
+                print(producoes[separa_reducao(int(auxiliar))-1])
                 s = tabela_slr[coluna.index(stack[len(stack) - 1])][stack[len(stack)-2]]
             i+= 1
     fonte.close()
