@@ -71,18 +71,17 @@ def separa_reducao(reducao):
 
 def __main__():
     fonte = open("texto.alg", "r")
-    lexema = fonte.readline()
-    print(lexema)
     s = 0
     while(True):
+        lexema = fonte.readline()
         if(lexema == ""):
             break
         a = 0
         a = lexico.__main__(lexema)
         i = 0
-        print(a)
+        print(len(a))
         while(i < len(a)-1):
-            print(a)
+            print(a[i])
             indice = coluna.index(a[i])
             print(indice)
             auxiliar = str(tabela_slr[s][indice])
@@ -96,13 +95,14 @@ def __main__():
                 split_esq = aux2[0]
                 split_dir = aux2[1]
                 aux3 = 0
-                while(aux3 != split_dir):
+                while(aux3 < split_dir-1):
                     stack.pop()
                     aux3 += 1
                 stack.append(split_esq)
-                print(producao[separa_reducao(auxiliar)-1])
+                print(producoes[separa_reducao(auxiliar)-1])
                 s = tabela_slr[coluna.index(stack[len(stack) - 1])][stack[len(stack)-2]]
-        lexema = fonte.readline()
+            i+= 1
+    fonte.close()
 
 
 __main__()
