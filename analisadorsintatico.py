@@ -64,30 +64,35 @@ gramatica = ["P'->1", "P->3", "V->2", "LV->2","LV->2", "D->3", "TIPO->1", "TIPO-
 coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "Inteiro", "real", "leia", "escreva", "literal", "num", "rcb", "opm", "se", "ab_p", "fc_p", "entao", "opr","fimse", "fim", "$", "P", "V", "LV", "D", "TIPO", "A", "ES", "ARG", "CMD", "LD", "OPRD", "COND","CABECALHO","EXP_R", "CORPO"]
 producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varfim ;", "D-> id TIPO ;", "TIPO-> int", "TIPO->real", "TIPO-> literal", "A->ES A", "ES-> leia id ;", "ES-> escreva ARG ;", "ARG-> literal", "ARG-> num", "ARG->id", "A-> CMD A", "CMD-> id rcb LD ;", "LD-> OPRD opm OPRD", "LD-> OPRD", "OPRD-> id", "OPRD-> num", "A-> COND A", "COND-> CABECALHO CORPO", "CABECALHO-> se ( EXP_R ) entao", "EXP_R->OPRD opr OPRD", "CORPO-> ES CORPO", "CORPO-> CMD CORPO", "CORPO-> COND CORPO", "CORPO->fimse", "A->fim"]
 
-stack = [0]
-
 def separa_reducao(reducao):
     return reducao.replace("r", "")
 
 def __main__():
+    stack = [0]
     fonte = open("texto.alg", "r")
     s = 0
     while(True):
         lexema = fonte.readline()
+        print(lexema)
         if(lexema == ""):
             break
         a = 0
         a = lexico.__main__(lexema)
+        print(a)
         i = 0
         while(i < len(a)):
+            print(a[i])
             indice = coluna.index(a[i])
-            auxiliar = str(tabela_slr[s][indice])
+            print("s %d", s)
+            print(indice)
+            auxiliar = tabela_slr[s][indice]
+            print(auxiliar)
+            auxiliar = str(auxiliar)
             if(auxiliar.isdigit() == True and auxiliar != 99):
                 stack.append(coluna[indice])
                 stack.append(auxiliar)
                 print(stack)
-                s = int(stack[len(stack) - 1])
-
+                s = tabela_slr[s][indice]
             else:
                 aux2 = gramatica[separa_reducao(auxiliar)-1]
                 aux2 = aux2.split("->")
