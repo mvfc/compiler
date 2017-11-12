@@ -27,7 +27,6 @@ def lexico(linha):
         while(len(linha) < i or linha[i].isalpha() == True or linha[i].isdigit() == True or linha[i] == "_"):
             i = i + 1
         criaNode(linha[:i], "id")
-        retorno.append("id")
         if(linha[i:] != ""):
             if(linha[i] == " "):
                 i += 1
@@ -36,66 +35,55 @@ def lexico(linha):
         while(len(linha) < i or linha[i].isdigit() == True or linha[i] == "E" or linha[i] == "."):
             i = i + 1
         criaNode(linha[:i], "num")
-        retorno.append("num")
         if (linha[i:] != ""):
             if (linha[i] == " "):
                 i += 1
             lexico(linha[i:])
     elif(linha[0] == "("):
         criaNode(linha[:1], "ab_p")
-        retorno.append("ab_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     elif(linha[0] == ")"):
         criaNode(linha[:1], "fc_p")
-        retorno.append("fc_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     elif(linha[0] == "+" or linha[0] == "-" or linha[0] == "/" or linha[0] == "*"):
         criaNode(linha[:1], "opm")
-        retorno.append("opm")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     elif(linha[0] == ";"):
         criaNode(linha[:1], "pt_v")
-        retorno.append("pt_v")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
     elif(linha[0] == "<" and linha[1] == "-"):
         criaNode(linha[:2], "rcb")
-        retorno.append("rcb")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     elif(linha[0] == "<" and linha[1] == "="):
         criaNode(linha[:2], "opr")
-        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     elif(linha[0] == ">" and linha[1] == "="):
         criaNode(linha[:2], "opr")
-        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     elif(linha[0] == "<" and linha[1] == ">"):
         criaNode(linha[:2], "opr")
-        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
     elif(linha[0] == "<" or linha[0] == ">" or linha[0] == "="):
         criaNode(linha[:1], "opr")
-        retorno.append("opr")
         if (linha[1:] != ""):
             lexico(linha[1:])
     elif(linha[0] == ""):
-        retorno.append("EOF")
         criaNode("", "EOF")
 
 def criaNode(lexema, token):
@@ -104,6 +92,7 @@ def criaNode(lexema, token):
     check = nodeExists(new, newrsv)
     if (check == 0):
         tabelaSimbolo.append(new)
+        retorno.append(token)
     elif (check == 2):
         retorno.append(lexema)
 
