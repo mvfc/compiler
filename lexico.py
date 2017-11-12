@@ -106,7 +106,7 @@ def nodeExists(node, nodersv):
         i = i + 1
     return 0
 
-def MostrarTabela():
+"""def MostrarTabela():
     open("output.txt", "w").close()
     saida = open("output.txt", "w")
     indexval = 0
@@ -117,7 +117,7 @@ def MostrarTabela():
         indexval += 1
     print(retorno)
 
-"""def __main__():
+def __main__():
     arquivo = open("texto.alg", "r")
     linha = arquivo.readline()
     while(linha != ""):
@@ -128,5 +128,7 @@ def MostrarTabela():
     MostrarTabela()"""
 
 def __main__(args):
+    global retorno
+    retorno = []
     lexico(args)
     return retorno
