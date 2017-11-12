@@ -1,3 +1,5 @@
+import lexico
+
 tabela_slr = [   2,       99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   1,  99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   00,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,       4,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99,  3, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
@@ -64,58 +66,43 @@ producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varf
 
 stack = [0]
 
-def separa_token(lexema):
-    aux = lexema.split(",")
-    aux2 = aux[1].replace(")", "")
-    aux2 = aux2.replace("Token='", "")
-    aux2 = aux2.replace("'", "")
-    aux2 = aux2.replace(" ","")
-    return aux2
-
-def busca_lexico(lexema):
-    arquivo = open("output.txt", "r")
-    linha = 0
-    aux = "(Lexema='"+lexema
-    while(True):
-        linha = arquivo.readline()
-        if(linha.find(aux)):
-            arquivo.close()
-            return str(linha)
-        elif(linha == ""):
-            arquivo.close()
-            break
-
 def separa_reducao(reducao):
     return reducao.replace("r", "")
 
 def __main__():
     fonte = open("texto.alg", "r")
-    lexema = str(fonte.readline())
+    lexema = fonte.readline()
+    print(lexema)
     s = 0
     while(True):
         if(lexema == ""):
             break
-        a = busca_lexico(lexema)
-        b = separa_token(a)
-        b = b.replace("\n", "")
-        indice = coluna.index(b)
+        a = 0
+        a = lexico.__main__(lexema)
+        i = 0
+        print(a)
+        while(i < len(a)-1):
+            print(a)
+            indice = coluna.index(a[i])
+            print(indice)
+            auxiliar = str(tabela_slr[s][indice])
+            print(auxiliar)
+            if(auxiliar.isdigit() == True and auxiliar != 99):
+                stack.append(coluna[indice])
+                stack.append(auxiliar)
+            else:
+                aux2 = gramatica[separa_reducao(auxiliar)-1]
+                aux2 = aux2.split("->")
+                split_esq = aux2[0]
+                split_dir = aux2[1]
+                aux3 = 0
+                while(aux3 != split_dir):
+                    stack.pop()
+                    aux3 += 1
+                stack.append(split_esq)
+                print(producao[separa_reducao(auxiliar)-1])
+                s = tabela_slr[coluna.index(stack[len(stack) - 1])][stack[len(stack)-2]]
         lexema = fonte.readline()
-        auxiliar = str(tabela_slr[s][indice])
-        if(auxiliar.isdigit() == True and auxiliar != 99):
-            stack.append(coluna[indice])
-            stack.append(auxiliar)
-        else:
-            aux2 = gramatica[separa_reducao(auxiliar)-1]
-            aux2 = aux2.split("->")
-            split_esq = aux2[0]
-            split_dir = aux2[1]
-            aux3 = 0
-            while(aux3 != split_dir):
-                stack.pop()
-                aux3 += 1
-            stack.append(split_esq)
-            print(producao[separa_reducao(auxiliar)-1])
-            s = tabela_slr[stack[len(stack) - 1]][stack[len(stack)-2]]
 
 
 __main__()
