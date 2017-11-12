@@ -44,10 +44,10 @@ tabela_slr = [[   2,       99,      99,     99,   99,  99,  99,     99,     99, 
 [   99,      99,      99,   "r17", 99,   99,  99,  "r17",  "r17",     99,        99,  99,   99,"r17",  99, 99,   99,   99, "r17",  "r17",   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,     99,"r18",  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   45,   99,         99,    99,    99],
 [   99,      99,      99,     99,  99,   99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   46,   99,    99,      99,  99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
-[   99,      99,      99,     35,  99,   99,  99,     99,     99,     99,        26,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   47,   99,         99,    99,    99],
+[   99,      99,      99,     35,  99,   99,  99,     99,     99,     99,        36,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   47,   99,         99,    99,    99],
 [   99,      99,      99,     99,"r18",  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,   "r24", 99,   99,  99,  "r24",  "r24",     99,        99,  99,   99, "r24", 99, 99,   99,   99, "r24",     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
-[   99,      99,      99,     99, "r5",  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
+[   99,      99,      99,     99, "r5",  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, "r25",   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,   "r12", 99,   99,  99,   "r12",  "r12",    99,        99,  99,   99,"r12",  99, 99,   99,   99, "r12",  "r12",   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,      99, 99,   51,  52,     99,     99,     53,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  50,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,      99, 54,   99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
@@ -61,7 +61,7 @@ tabela_slr = [[   2,       99,      99,     99,   99,  99,  99,     99,     99, 
 [   99,      99,      99,    "r5", 99,   99,  99,   "r5",   "r5",     99,        99,  99,   99, "r5",  99, 99,   99,   99,    99,     99,   99,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99]]
 
 gramatica = ["P'->1", "P->3", "V->2", "LV->2","LV->2", "D->3", "TIPO->1", "TIPO->1", "TIPO->1", "A->2", "ES->3", "ES->3", "ARG->1", "ARG->1", "ARG->1", "A->2", "CMD->4", "LD->3", "LD->1", "OPRD->1", "OPRD->1", "A->2", "COND->2", "CABECALHO->5", "EXP_R->3", "CORPO->2", "CORPO->2", "CORPO->2", "CORPO->1", "A->1"]
-coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "Inteiro", "real", "leia", "escreva", "literal", "num", "rcb", "opm", "se", "ab_p", "fc_p", "entao", "opr","fimse", "fim", "$", "P", "V", "LV", "D", "TIPO", "A", "ES", "ARG", "CMD", "LD", "OPRD", "COND","CABECALHO","EXP_R", "CORPO"]
+coluna = [ "inicio", "varinicio", "varfim", "id", "pt_v", "inteiro", "real", "leia", "escreva", "literal", "num", "rcb", "opm", "se", "ab_p", "fc_p", "entao", "opr","fimse", "fim", "$", "P", "V", "LV", "D", "TIPO", "A", "ES", "ARG", "CMD", "LD", "OPRD", "COND","CABECALHO","EXP_R", "CORPO"]
 producoes = ["P'->P", "P->inicio V A", "V-> varinicio LV", "LV->D LV","LV-> varfim ;", "D-> id TIPO ;", "TIPO-> int", "TIPO->real", "TIPO-> literal", "A->ES A", "ES-> leia id ;", "ES-> escreva ARG ;", "ARG-> literal", "ARG-> num", "ARG->id", "A-> CMD A", "CMD-> id rcb LD ;", "LD-> OPRD opm OPRD", "LD-> OPRD", "OPRD-> id", "OPRD-> num", "A-> COND A", "COND-> CABECALHO CORPO", "CABECALHO-> se ( EXP_R ) entao", "EXP_R->OPRD opr OPRD", "CORPO-> ES CORPO", "CORPO-> CMD CORPO", "CORPO-> COND CORPO", "CORPO->fimse", "A->fim"]
 
 def separa_reducao(reducao):
@@ -104,15 +104,18 @@ def __main__():
                 split_esq = aux2[0]
                 split_dir = int(aux2[1]) * 2
                 aux3 = 0
+                print(producoes[separa_reducao(auxiliar) - 1])
+                print("Antes desempilhar", stack)
                 while(aux3 < split_dir):
                     stack.pop()
                     aux3 += 1
+                print("Stack depois desempilhar", stack)
                 stack.append(split_esq)
-                print(producoes[separa_reducao(auxiliar)-1])
                 indiceaux = int(coluna.index(stack[len(stack) - 1]))
                 indiceaux2 = int(stack[len(stack) - 2])
-                stack.append(tabela_slr[indiceaux2][indiceaux])
                 s = tabela_slr[indiceaux2][indiceaux]
+                stack.append(s)
+                print("Empilha estado s", s, "usando", stack[len(stack)-2], indiceaux)
     fonte.close()
 
 
