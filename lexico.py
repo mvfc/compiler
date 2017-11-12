@@ -11,7 +11,7 @@ h = node("se", "se")
 i = node("entao", "entao")
 j = node("fimse", "fimse")
 k = node("fim", "fim")
-l = node("Inteiro", "Inteiro")
+l = node("inteiro", "inteiro")
 m = node("entao", "entao")
 n = node("literal", "literal")
 o = node("real", "real")
@@ -21,7 +21,7 @@ tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 retorno = []
 
 def lexico(linha):
-    i = 0
+    i = 1
     global retorno
     if(linha[0].isalpha() == True):
         while(len(linha) < i or linha[i].isalpha() == True or linha[i].isdigit() == True or linha[i] == "_"):
@@ -83,6 +83,14 @@ def lexico(linha):
         criaNode(linha[:1], "opr")
         if (linha[1:] != ""):
             lexico(linha[1:])
+    elif(linha[0] == '"'):
+        while(len(linha) < i or linha[i] != '"'):
+            i = i + 1
+        i += 1
+        if (linha[i:] != ""):
+            if (linha[i] == " "):
+                i += 1
+            lexico(linha[i:])
     elif(linha[0] == ""):
         criaNode("", "EOF")
 
@@ -90,11 +98,11 @@ def criaNode(lexema, token):
     new = node(lexema, token)
     newrsv = node(lexema, lexema)
     check = nodeExists(new, newrsv)
-    if (check == 0):
+    if (check == 2):
+        retorno.append(lexema)
+    else:
         tabelaSimbolo.append(new)
         retorno.append(token)
-    elif (check == 2):
-        retorno.append(lexema)
 
 def nodeExists(node, nodersv):
     i = 0
@@ -130,5 +138,7 @@ def __main__():
 def __main__(args):
     global retorno
     retorno = []
+    tabelaSimbolo = []
+    tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
     lexico(args)
     return retorno
