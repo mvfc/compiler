@@ -86,6 +86,7 @@ def lexico(linha):
     elif(linha[0] == '"'):
         while(len(linha) < i or linha[i] != '"'):
             i = i + 1
+        criaNode(linha[:i], "ARG")
         i += 1
         if (linha[i:] != ""):
             if (linha[i] == " "):
