@@ -1,5 +1,4 @@
 from collections import namedtuple
-import sys
 
 node = namedtuple("node", "Lexema Token")
 
@@ -19,77 +18,101 @@ o = node("real", "real")
 
 tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 
-arquivo = open("texto.alg")
+retorno = []
 
 def lexico(linha):
     i = 0
+    global retorno
     if(linha[0].isalpha() == True):
         while(len(linha) < i or linha[i].isalpha() == True or linha[i].isdigit() == True or linha[i] == "_"):
             i = i + 1
         criaNode(linha[:i], "id")
+        retorno.append("id")
         if(linha[i:] != ""):
+            if(linha[i] == " "):
+                i += 1
             lexico(linha[i:])
-    if(linha[0].isdigit() == True):
+    elif(linha[0].isdigit() == True):
         while(len(linha) < i or linha[i].isdigit() == True or linha[i] == "E" or linha[i] == "."):
             i = i + 1
         criaNode(linha[:i], "num")
+        retorno.append("num")
         if (linha[i:] != ""):
+            if (linha[i] == " "):
+                i += 1
             lexico(linha[i:])
-    if(linha[0] == "("):
+    elif(linha[0] == "("):
         criaNode(linha[:1], "ab_p")
+        retorno.append("ab_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
-    if(linha[0] == ")"):
+    elif(linha[0] == ")"):
         criaNode(linha[:1], "fc_p")
+        retorno.append("fc_p")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
-    if(linha[0] == "+" or linha[0] == "-" or linha[0] == "/" or linha[0] == "*"):
+    elif(linha[0] == "+" or linha[0] == "-" or linha[0] == "/" or linha[0] == "*"):
         criaNode(linha[:1], "opm")
+        retorno.append("opm")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
-    if(linha[0] == ";"):
+    elif(linha[0] == ";"):
         criaNode(linha[:1], "pt_v")
+        retorno.append("pt_v")
         if (linha[1:] != ""):
             lexico(linha[1:])
 
-    if(linha[0] == "<" and linha[1] == "-"):
+    elif(linha[0] == "<" and linha[1] == "-"):
         criaNode(linha[:2], "rcb")
+        retorno.append("rcb")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
-    if(linha[0] == "<" and linha[1] == "="):
+    elif(linha[0] == "<" and linha[1] == "="):
         criaNode(linha[:2], "opr")
+        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
-    if(linha[0] == ">" and linha[1] == "="):
+    elif(linha[0] == ">" and linha[1] == "="):
         criaNode(linha[:2], "opr")
+        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
-    if(linha[0] == "<" and linha[1] == ">"):
+    elif(linha[0] == "<" and linha[1] == ">"):
         criaNode(linha[:2], "opr")
+        retorno.append("opr")
         if (linha[2:] != ""):
             lexico(linha[2:])
 
-    if(linha[0] == "<" or linha[0] == ">" or linha[0] == "="):
+    elif(linha[0] == "<" or linha[0] == ">" or linha[0] == "="):
         criaNode(linha[:1], "opr")
+        retorno.append("opr")
         if (linha[1:] != ""):
             lexico(linha[1:])
+    elif(linha[0] == ""):
+        retorno.append("EOF")
+        criaNode("", "EOF")
 
 def criaNode(lexema, token):
     new = node(lexema, token)
     newrsv = node(lexema, lexema)
-    if (nodeExists(new, newrsv) == 0):
+    check = nodeExists(new, newrsv)
+    if (check == 0):
         tabelaSimbolo.append(new)
+    elif (check == 2):
+        retorno.append(lexema)
 
 def nodeExists(node, nodersv):
     i = 0
     while (len(tabelaSimbolo) > i):
-        if (node == tabelaSimbolo[i] or nodersv == tabelaSimbolo[i]):
+        if(nodersv == tabelaSimbolo[i]):
+            return 2
+        elif (node == tabelaSimbolo[i]):
             return 1
         i = i + 1
     return 0
@@ -103,10 +126,9 @@ def MostrarTabela():
         saida.write(str(tabelaSimbolo[indexval]).replace("node",""))
         saida.write("\n")
         indexval += 1
+    print(retorno)
 
-def __main__():
-    """str(sys.argv)
-    arquivo = open(argv[1])"""
+"""def __main__():
     arquivo = open("texto.alg", "r")
     linha = arquivo.readline()
     while(linha != ""):
@@ -114,6 +136,8 @@ def __main__():
         linha = arquivo.readline()
     if(linha == ""):
         criaNode("", "EOF")
-    MostrarTabela()
+    MostrarTabela()"""
 
-__main__()
+def __main__(args):
+    lexico(args)
+    return retorno
