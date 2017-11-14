@@ -94,6 +94,8 @@ def lexico(linha):
             lexico(linha[i:])
     elif(linha[0] == ""):
         criaNode("", "EOF")
+    elif (linha[0] == "$"):
+        criaNode("$", "$")
 
 def criaNode(lexema, token):
     new = node(lexema, token)
