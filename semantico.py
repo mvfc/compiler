@@ -340,8 +340,8 @@ def __semantico__(lexema, token, regra, i):
             arvore.pai.right = arvore
         arvore = arvore.pai
     elif(regra == 25):
-        arquivo.write("\n"+arvore.left.tipo + " " + "T" + str(x)+"\n")
-        arquivo.write("T" + str(x) + " = " + lexico.__getlexema__(i-1) + " " + analisadorsintatico.__gettipo__(i-2) + " " + lexico.__getlexema__(i-3)+"\n")
+        arquivo.write("\n"+analisadorsintatico.__gettipo__(lexico.__getindex__(lexico.__getlexema__(i-3))) + " " + "T" + str(x)+"\n")
+        arquivo.write("T" + str(x) + " = " + lexico.__getlexema__(i-3) + " " + analisadorsintatico.__gettipo__(i-2) + " " + lexico.__getlexema__(i-1)+"\n")
         x = x + 1
         if (arvore.pai == None):
             arvore.pai = Tree()
