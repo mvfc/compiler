@@ -16,12 +16,12 @@ scanf("%d", &B);
 printf("Digite A:");
 scanf("%s", A);
 
-id T0
-T0 = 2 > B
+int T0
+T0 = B > 2
 if(T0) {
 
-id T1
-T1 = 4 <= B
+int T1
+T1 = B <= 4
 if(T1) {
 printf("B esta entre 2 e 4");
 }
