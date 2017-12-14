@@ -1,4 +1,5 @@
 import lexico
+import semantico
 
 tabela_slr = [[   2,       99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   1,  99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   00,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
@@ -68,48 +69,58 @@ def separa_reducao(reducao):
     a = reducao.replace("r", "")
     return int(a)
 
-def __main__():
+tokens = []
+lexemas = []
+tipos = []
+
+def __settipo__(tipo, i):
+    if(i > len(tipos)):
+        tipos.append(tipo)
+    else:
+        tipos[i] = tipo
+
+def __gettipo__(i):
+    return tipos[i]
+
+def sintatico():
+    semantico.__init__()
     stack = [0]
-    fonte = open("texto.alg", "r")
     s = 0
+    lexico.__init__()
+    i = 0
     while(True):
-        lexema = fonte.readline()
-        if(lexema == ""):
+        token = 0
+        token = str(lexico.__gettoken__(i))
+        tokens.append(token)
+        lexemas.append(lexico.__getlexema__(i))
+        if (token == "EOF"):
             break
-        a = 0
-        a = lexico.__main__(lexema)
-        i = 0
-        while(i < len(a)):
-            try:
-                indice = coluna.index(a[i])
-            except:
-                print("error")
-                break
-            auxiliar = tabela_slr[s][indice]
-            s = auxiliar
-            if(str(auxiliar).isdigit() and auxiliar == 00):
-                print("Aceita!!")
-                break
-            elif(str(auxiliar).isdigit() == True and auxiliar != 99):
-                stack.append(coluna[indice])
-                stack.append(auxiliar)
-                i += 1
-            else:
-                aux2 = gramatica[separa_reducao(auxiliar)-1]
-                aux2 = aux2.split("->")
-                split_esq = aux2[0]
-                split_dir = int(aux2[1]) * 2
-                aux3 = 0
-                print(producoes[separa_reducao(auxiliar) - 1])
-                while(aux3 < split_dir):
-                    stack.pop()
-                    aux3 += 1
-                stack.append(split_esq)
-                indiceaux = int(coluna.index(stack[len(stack) - 1]))
-                indiceaux2 = int(stack[len(stack) - 2])
-                s = tabela_slr[indiceaux2][indiceaux]
-                stack.append(s)
-    fonte.close()
-
-
-__main__()
+        indice = coluna.index(token)
+        auxiliar = tabela_slr[s][indice]
+        s = auxiliar
+        if(str(auxiliar).isdigit() and auxiliar == 00):
+            print("Aceita!!")
+            break
+        elif(str(auxiliar).isdigit() == True and auxiliar != 99):
+            stack.append(coluna[indice])
+            stack.append(auxiliar)
+            i += 1
+        else:
+            aux2 = gramatica[separa_reducao(auxiliar)-1]
+            aux2 = aux2.split("->")
+            split_esq = aux2[0]
+            split_dir = int(aux2[1]) * 2
+            aux3 = 0
+            print(producoes[separa_reducao(auxiliar) - 1])
+            while(aux3 < split_dir):
+                stack.pop()
+                aux3 += 1
+            stack.append(split_esq)
+            indiceaux = int(coluna.index(stack[len(stack) - 1]))
+            indiceaux2 = int(stack[len(stack) - 2])
+            s = tabela_slr[indiceaux2][indiceaux]
+            stack.append(s)
+            semantico.__semantico__(lexico.__getlexema__(i), lexico.__gettoken__(i), separa_reducao(auxiliar), i)
+    arquivo = open("programa.c", "a")
+    arquivo.write("\n}")
+    arquivo.close()
