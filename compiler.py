@@ -1,0 +1,3 @@
+import analisadorsintatico
+
+analisadorsintatico.sintatico()
