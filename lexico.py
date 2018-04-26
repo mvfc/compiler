@@ -142,7 +142,7 @@ def __getlexema__(i):
     return lexemas[i]
 
 def __settoken__(token, i):
-    tokensi[i] = token
+    tokens[i] = token
 
 def __setlexema__(lexema, i):
     lexemas[i] = lexema
