@@ -121,6 +121,9 @@ def lexico(linha):
     elif (linha[0] == "$"):
         criaNode("$", "$")
         analisadorsintatico.__settipo__("$", len(tokens))
+    else:
+        criaNode("", "ERRO")
+        raise Exception("Token nao pertence a linguagem")
 
 def criaNode(lexema, token):
     new = node(lexema, token)
