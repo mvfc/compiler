@@ -23,6 +23,8 @@ tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 tokens = []
 lexemas = []
 
+nrlinha = 0
+
 def lexico(linha):
     i = 1
     global retorno
@@ -123,7 +125,7 @@ def lexico(linha):
         analisadorsintatico.__settipo__("$", len(tokens))
     else:
         criaNode("", "ERRO")
-        raise Exception("Token nao pertence a linguagem")
+        raise Exception("Erro em Linha "+nrlinha". Token nao pertence a linguagem")
 
 def criaNode(lexema, token):
     new = node(lexema, token)
@@ -166,7 +168,8 @@ def __init__():
     arquivo = open("texto.alg", "r")
     linha = arquivo.readline()
     while(linha != ""):
-        lexico(linha)
+        global nrlinha += 1
+        lexico(linha, i)
         linha = arquivo.readline()
     if(linha == ""):
         criaNode("$", "EOF")
