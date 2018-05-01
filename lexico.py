@@ -23,11 +23,8 @@ tabelaSimbolo = [c, d, e, f, g, h, i, j, k, l, m, n, o]
 tokens = []
 lexemas = []
 
-nrlinha = 0
-
 def lexico(linha):
     i = 1
-    global retorno
     if(linha[0].isalpha() == True):
         while(len(linha) < i or linha[i].isalpha() == True or linha[i].isdigit() == True or linha[i] == "_"):
             i = i + 1
@@ -124,8 +121,7 @@ def lexico(linha):
         criaNode("$", "$")
         analisadorsintatico.__settipo__("$", len(tokens))
     else:
-        criaNode("", "ERRO")
-        raise Exception("Erro em Linha "+nrlinha". Token nao pertence a linguagem")
+        print('Erro. Token Invalido')
 
 def criaNode(lexema, token):
     new = node(lexema, token)
@@ -168,9 +164,9 @@ def __init__():
     arquivo = open("texto.alg", "r")
     linha = arquivo.readline()
     while(linha != ""):
-        global nrlinha += 1
-        lexico(linha, i)
+        lexico(linha)
         linha = arquivo.readline()
     if(linha == ""):
         criaNode("$", "EOF")
     arquivo.close()
+    print(tabelaSimbolo)
