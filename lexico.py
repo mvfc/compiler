@@ -169,4 +169,5 @@ def __init__():
     if(linha == ""):
         criaNode("$", "EOF")
     arquivo.close()
-    print(tabelaSimbolo)
+    for p in tabelaSimbolo:
+        print(p)
