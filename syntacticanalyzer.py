@@ -1,5 +1,5 @@
 import lexic
-import ifmantic
+import semantic
 
 table_slr = [[   2,       99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   99,   1,  99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
 [   99,      99,      99,     99,   99,  99,  99,     99,     99,     99,        99,  99,   99,   99,  99, 99,   99,   99,    99,     99,   00,   99, 99, 99,  99,  99,  99,  99,   99,  99,   99,   99,   99,         99,    99,    99],
@@ -76,7 +76,7 @@ types = []
 def __settype__(type, i):
     if(i > len(types)):
         types.append(type)
-    elif:
+    else:
         types[i] = type
 
 def __gettype__(i):
@@ -105,7 +105,7 @@ def syntactic():
             stack.append(column[index])
             stack.append(aux)
             i += 1
-        elif:
+        else:
             aux2 = grammar[split_reduction(aux)-1]
             aux2 = aux2.split("->")
             split_left = aux2[0]

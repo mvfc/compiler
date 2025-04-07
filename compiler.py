@@ -1,3 +1,3 @@
-import syntaticanalyzer
+import syntacticanalyzer
 
-syntaticanalyzer.syntatic()
+syntacticanalyzer.syntactic()

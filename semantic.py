@@ -1,4 +1,4 @@
-import syntaticanalyzer
+import syntacticanalyzer
 import lexic
 
 class Tree(object):
@@ -146,9 +146,9 @@ def __semantic__(lexeme, token, rule, i):
         tree = tree.father
         file.write( tree.type +" "+tree.lexeme+";\n")
         if(tree.type == "int"):
-            syntaticanalyzer.__settype__("int", i-3)
+            syntacticanalyzer.__settype__("int", i-3)
         else:
-            syntaticanalyzer.__settype__(tree.type, i-3)
+            syntacticanalyzer.__settype__(tree.type, i-3)
     elif(rule == 10):
         if (tree.father == None):
             tree.father = Tree()
@@ -159,14 +159,14 @@ def __semantic__(lexeme, token, rule, i):
             tree.father.right = tree
         tree = tree.father
     elif(rule == 11):
-        if(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "id"):
+        if(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "id"):
             print("Error: Undeclared variable:" + lexic.__getlexeme__(i-2))
         else:
-            if(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "literal"):
+            if(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "literal"):
                 file.write('scanf("%s", '+lexic.__getlexeme__(i-2)+');\n')
-            if(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "int"):
+            if(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "int"):
                 file.write('scanf("%d", &' + lexic.__getlexeme__(i-2) + ');\n')
-            if(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "real"):
+            if(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == "real"):
                 file.write('scanf("%lf", &' + lexic.__getlexeme__(i-2) + ');\n')
         if (tree.father == None):
             tree.father = Tree()
@@ -212,7 +212,7 @@ def __semantic__(lexeme, token, rule, i):
         tree.father.type = "num"
         tree = tree.father
     elif(rule == 15):
-        syntaticanalyzer.__settype__("id", i)
+        syntacticanalyzer.__settype__("id", i)
         if (tree.father == None):
             tree.father = Tree()
         if (tree.father.left == None):
@@ -235,20 +235,20 @@ def __semantic__(lexeme, token, rule, i):
     elif(rule == 17):
         if(lexic.__getlexeme__(i-5) == ";"):
            if(lexic.__getlexeme__(i-1) == ";"):
-               file.write(lexic.__getlexeme__(i-4)+syntaticanalyzer.__gettype__(i-3)+lexic.__getlexeme__(i-2)+"\n")
-           elif(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-4))) == "id"):
+               file.write(lexic.__getlexeme__(i-4)+syntacticanalyzer.__gettype__(i-3)+lexic.__getlexeme__(i-2)+"\n")
+           elif(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-4))) == "id"):
                 print("Error: Undeclared variable:" + lexic.__getlexeme__(i-3))
            else:
-                if(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == syntaticanalyzer.__gettype__(i-2)):
-                    file.write(lexic.__getlexeme__(i-4)+syntaticanalyzer.__gettype__(i-3)+lexic.__getlexeme__(i-2)+"\n")
+                if(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-2))) == syntacticanalyzer.__gettype__(i-2)):
+                    file.write(lexic.__getlexeme__(i-4)+syntacticanalyzer.__gettype__(i-3)+lexic.__getlexeme__(i-2)+"\n")
                 else:
                     print("Error: different types for attribution")
         else:
-            if (syntaticanalyzer.__gettype__(i - 5) == "id"):
+            if (syntacticanalyzer.__gettype__(i - 5) == "id"):
                 print("Error: Undeclared variable:" + lexic.__getlexeme__(i - 5))
             else:
-                if (syntaticanalyzer.__gettype__(i - 6) == syntaticanalyzer.__gettype__(i - 4)):
-                    file.write(str(lexic.__getlexeme__(i - 6)) + str(syntaticanalyzer.__gettype__(i - 5)) + tree.lexeme + "\n")
+                if (syntacticanalyzer.__gettype__(i - 6) == syntacticanalyzer.__gettype__(i - 4)):
+                    file.write(str(lexic.__getlexeme__(i - 6)) + str(syntacticanalyzer.__gettype__(i - 5)) + tree.lexeme + "\n")
                 else:
                     print("Error: different types for attribution")
         if (tree.father == None):
@@ -260,8 +260,8 @@ def __semantic__(lexeme, token, rule, i):
             tree.father.right = tree
         tree = tree.father
     elif(rule == 18):
-        file.write(syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-3)))+" "+"T"+str(x)+"\n")
-        file.write("T"+str(x)+" = "+lexic.__getlexeme__(i-3)+" "+syntaticanalyzer.__gettype__(i-2)+" "+lexic.__getlexeme__(i-1)+"\n")
+        file.write(syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-3)))+" "+"T"+str(x)+"\n")
+        file.write("T"+str(x)+" = "+lexic.__getlexeme__(i-3)+" "+syntacticanalyzer.__gettype__(i-2)+" "+lexic.__getlexeme__(i-1)+"\n")
         x = x + 1
         if (tree.father == None):
             tree.father = Tree()
@@ -340,8 +340,8 @@ def __semantic__(lexeme, token, rule, i):
             tree.father.right = tree
         tree = tree.father
     elif(rule == 25):
-        file.write("\n"+syntaticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-3))) + " " + "T" + str(x)+"\n")
-        file.write("T" + str(x) + " = " + lexic.__getlexeme__(i-3) + " " + syntaticanalyzer.__gettype__(i-2) + " " + lexic.__getlexeme__(i-1)+"\n")
+        file.write("\n"+syntacticanalyzer.__gettype__(lexic.__getindex__(lexic.__getlexeme__(i-3))) + " " + "T" + str(x)+"\n")
+        file.write("T" + str(x) + " = " + lexic.__getlexeme__(i-3) + " " + syntacticanalyzer.__gettype__(i-2) + " " + lexic.__getlexeme__(i-1)+"\n")
         x = x + 1
         if (tree.father == None):
             tree.father = Tree()
