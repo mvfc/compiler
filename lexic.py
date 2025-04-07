@@ -120,8 +120,10 @@ def lexic(line):
     elif (line[0] == "$"):
         createNode("$", "$")
         syntacticanalyzer.__settype__("$", len(tokens))
+    elif line[0] == "\n":
+        print("Ignoring linebreak")
     else:
-        print('Erro. Token Invalido')
+        print(f"Error. Invalid token {line[0]}")
 
 def createNode(lexeme, token):
     new = node(lexeme, token)
