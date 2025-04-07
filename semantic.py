@@ -183,7 +183,7 @@ def __semantic__(lexeme, token, rule, i):
         if('"' in tree.lexeme):
             file.write('printf(' + tree.lexeme + '");\n')
         else:
-            file.write('printf(' + tree.lexeme + ');\n')
+            file.write('printf("%d", ' + tree.lexeme + ");\n")
         if (tree.father.left == None):
             tree.father.left = tree
         else:
